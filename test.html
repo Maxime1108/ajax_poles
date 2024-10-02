@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Test</h1>
+        <form action="">
+            <textarea name="contenu" id="contenu" class="form-control"></textarea>
+        </form>
+        <a href="" class="btn btn-secondary">Modidier le contenu</a>
+    </div>
+
+    <p>Exercice : 
+        quand on clique sur le lien, modifier le contenu de la balise textarea
+        en affectant le contenu du fichier page.html en utilisant 'fetch'.
+        Mettre le code JS dans une balise script.
+
+    </p>
+    <script>
+        let textarea = document.querySelector("#contenu");
+        let bouton = document.querySelector("a");
+        bouton.addEventListener("click", event => {
+            event.preventDefault();
+            fetch("page.html")
+                .then( function(reponseHTTP) {
+                    return reponseHTTP.text();
+                } )
+                . then( function(texte) {
+                    textarea.innerHTML = texte;
+                } )
+        })
+    </script>
+</body>
+</html>

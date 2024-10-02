@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script>
+        /** L'évènement "load" de l'objet "window" est déclenchée quand toute la page HTML est chargée.
+         *  L'objet "window" représente l'onglet du navigateur dans lequel se trouve la page HTML.
+         * 
+         */
+        window.addEventListener("load", function() {
+            document.querySelector("#btPage").addEventListener("click", function(event) {
+                event.preventDefault(); // annule le comportement par défaut de l'évènement
+                const divResultat = document.querySelector("#resultat");
+                // appel AJAX avec fetch
+                /**
+                 * fetch est une fonction qui permet de faire une requête HTTP.
+                 * Une requête HTTP peut prendre un certain temp donc pour utiliser 
+                 * le résultat de cette requête, il faut, normalement, attendre que
+                 * la requête soit fini. Pour cela, fetch retourne un objet de type
+                 * Promise. Lorsque la requête est fini, on peut utliser la méthode 'then'
+                 * de l'objet Promise pour définir ce qu'il va se passer à ce moment là.
+                 * 
+                 */
+                fetch("page.html")
+                    .then( function(response) {
+                        return response.text();
+                    })
+                    .then(data => {
+                        divResultat.innerHTML = data;
+                    })
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Page d'accueil</h1>
+
+        <div id="resultat" style="border: 5px solid"></div>
+        <a id="btPage" href="page.html" class="btn btn-primary">page suivante</a>
+    </div>
+</body>
+</html>
